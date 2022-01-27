@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Card from './components/Card';
 import "./css/CardGroup.css";
-import {faHeart as FarHeart} from "@fortawesome/free-regular-svg-icons";
-import {faHeart as FasHeart} from "@fortawesome/free-solid-svg-icons";
+// import {faHeart as FarHeart} from "@fortawesome/free-regular-svg-icons";
+// import {faHeart as FasHeart} from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -17,16 +17,21 @@ class CardGroup extends Component {
         this.state = {
             images: [],
             errorMsg: '',
-            icon :FarHeart,
-            iconDisplay: false
-            }
+
+        }
     }
 
     componentDidMount = () => {
 
-        axios.get('https://images-api.nasa.gov/asset/as11-40-5874')
+        axios.get('https://images-api.nasa.gov/search?q=description&media_type=image')
             .then(response => {
-                this.setState({ images: response.data.collection.items })
+
+                const imgCollection = [];
+
+                for (let i = 0; i < 50; i++) {
+                    imgCollection.push(response.data.collection.items[i]);
+                }
+                this.setState({ images: imgCollection })
             })
             .catch(error => {
                 this.setState({ errorMsg: "Error retrieving data" })
@@ -35,55 +40,37 @@ class CardGroup extends Component {
     }
 
 
-    changeIcon = ()=>{
-
-        const {iconDisplay} = this.state;
-
-     
-             if(iconDisplay !==true){
-            this.setState({icon: FasHeart , iconDisplay:true})
-        }else{
-            this.setState({icon: FarHeart , iconDisplay:false})
-        }
-        
-
-       
-
-       
-    }
-
-
-
     render() {
 
         const { images, errorMsg } = this.state;
 
-        console.log(images)
-
-
         return (
             <div className='card_container'>
                 <h1 > spacestagram</h1>
-                
-            <div className='card_group'>     
-                {
-                    images.length ?
-                        images.map((itm, i) => {
-                            console.log(i)
-                            return <Card 
-                            key={i} 
-                            img={itm.href} 
-                            changeIcon = {(e) => this.changeIcon(e)}
-                            icon={this.state.icon}
-                            // index ={i}
-                           
-                             />
-                        }) : null
-                }
 
-                {
-                    errorMsg ? <div>{errorMsg}</div> : null
-                }
+                <div className='card_group'>
+
+                    {
+                        images.length ?
+
+                            images.map((itm, i) => {
+
+                                return <Card
+                                    key={i} 
+                                    img={itm.links[0].href}
+                                    body = {itm.data[0].description}
+                                    header = {itm.data[0].date_created}
+                                />
+
+                            }) : null
+                    }
+
+                    {
+                        errorMsg ?
+
+                            <div>{errorMsg}</div> : null
+                    }
+
                 </div>
 
             </div >

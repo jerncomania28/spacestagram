@@ -44,3 +44,7 @@
     /* margin: 1rem; */
     border-radius: 5px;
 }
+
+.card .card-footer>button:hover{
+    cursor :pointer;
+}
