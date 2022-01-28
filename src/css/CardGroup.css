@@ -1,4 +1,25 @@
 
+
+@keyframes loader-circle{
+
+    0%{
+        transform: rotate(90deg);
+    }
+    25%{
+        transform: rotate(180deg);
+    }
+    50%{
+        transform: rotate(270deg);
+    }
+    75%{
+       transform: rotate(360deg);
+    }
+    100%{
+       transform: rotate(0deg);
+    }
+
+}
+
 .card_container{
     display: flex;
     flex-direction: column;
@@ -14,4 +35,29 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.loader-circle{
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: loader-circle 1s infinite;
+}
+.loader-circle .loader-inner{
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loader-circle .loader-inner > span{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: black;
+   
 }

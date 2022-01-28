@@ -62,7 +62,12 @@ class CardGroup extends Component {
                                     header = {itm.data[0].date_created}
                                 />
 
-                            }) : null
+                            }) : 
+                            <div className='loader-circle'>
+                                <div className='loader-inner'>
+                                    <span className='smaller-cirle'></span>
+                                </div>
+                            </div>
                     }
 
                     {
