@@ -38,8 +38,8 @@
 }
 
 .loader-circle{
-    width: 40px;
-    height: 40px;
+    width: 15px;
+    height: 15px;
     border: 1px solid black;
     display: flex;
     justify-content: center;
@@ -47,8 +47,8 @@
     animation: loader-circle 1s infinite;
 }
 .loader-circle .loader-inner{
-    width: 30px;
-    height: 30px;
+    width: 8px;
+    height: 8px;
     border: 1px solid black;
     display: flex;
     justify-content: center;
