@@ -21,8 +21,10 @@
 }
 
 .card_container{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    /* flex-direction: column; */
+    grid-auto-rows: auto;
+    grid-auto-flow: dense;
 }
 .card_container > h1{
     text-align: center;
